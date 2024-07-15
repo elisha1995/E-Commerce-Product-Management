@@ -1,29 +1,35 @@
-import { useEffect, useState } from "react";
-import { Product } from "../models/product";
+import {
+  Container,
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+} from "@mui/material";
+import Catalog from "../../features/catalog/Catalog";
+import Header from "./Header";
+import { useState } from "react";
 
 function App() {
-  // Define a state variable products, using useState
-  const [products, setProducts] = useState<Product[]>([]);
+  const [darkMode, setDarkMode] = useState(false);
+  const paletteType = darkMode ? "dark" : "light";
 
-  useEffect(() => {
-    fetch("http://localhost:8082/api/products")
-      .then((response) => response.json())
-      .then((data) => setProducts(data.content));
-  }, []);
+  const theme = createTheme({
+    palette: {
+      mode: paletteType,
+    },
+  });
+
+  function handleThemeChange() {
+    setDarkMode(!darkMode);
+  }
 
   return (
-    <div>
-      <h1>GES Sports Store</h1>
-      {products.map((product) => (
-        <div key={product.id}>
-          <p>Name: {product.name}</p>
-          <p>Description: {product.description}</p>
-          <p>Price: ${product.price}</p>
-          <p>Brand: {product.productBrand}</p>
-          <p>Type: {product.productType}</p>
-        </div>
-      ))}
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+      <Container sx={{ paddingTop: "64px" }}>
+        <Catalog />
+      </Container>
+    </ThemeProvider>
   );
 }
 
