@@ -18,7 +18,7 @@ export default function ProductList({ products }: Props) {
     <Grid container spacing={4}>
       {/* Iterate over the products array and render each product in a Grid item */}
       {products.map((product) => (
-        <Grid item xs={4} key={product.id}>
+        <Grid item xs={3} key={product.id}>
           {/* Render a ProductCard component for each product */}
           <ProductCard product={product} />
         </Grid>

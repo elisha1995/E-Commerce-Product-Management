@@ -4,6 +4,8 @@ import HomePage from "../../features/home/HomePage";
 import App from "../layout/App";
 import ContactPage from "../../features/contact/ContactPage";
 import ProductDetails from "../../features/catalog/ProductDetails";
+import NotFound from "../errors/NotFoundError";
+import ServerError from "../errors/ServerError";
 
 export const router = createBrowserRouter([
   {
@@ -24,9 +26,9 @@ export const router = createBrowserRouter([
     //   { path: "basket", element: <BasketPage /> },
     //   { path: "login", element: <SignInPage /> },
     //   { path: "register", element: <RegisterPage /> },
-    //   { path: "not-found", element: <NotFound /> },
-    //   { path: "server-error", element: <ServerError /> },
-    //   { path: "*", element: <Navigate replace to="/not-found" /> },
+      { path: "not-found", element: <NotFound /> },
+      { path: "server-error", element: <ServerError /> },
+      { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },
 ]);
