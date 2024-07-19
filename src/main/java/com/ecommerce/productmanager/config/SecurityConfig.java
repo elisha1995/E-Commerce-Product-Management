@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -48,11 +47,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // Disable CSRF protection
-        http.csrf(AbstractHttpConfigurer::disable)
+        http.csrf(csrf -> csrf.disable())
                 // Configure URL-based authorization
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/products").authenticated() // Require authentication for /products
                         .requestMatchers("/auth/login").permitAll() // Allow all access to /auth/login
+                        .requestMatchers("/actuator/**").permitAll() // Permit all access to Actuator endpoints (or customize as needed)
                         .anyRequest().permitAll()) // Allow all access to other requests
                 // Configure exception handling to use JwtAuthenticationEntryPoint for unauthorized requests
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))

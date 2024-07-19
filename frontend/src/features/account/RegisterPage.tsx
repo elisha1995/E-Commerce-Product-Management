@@ -10,7 +10,8 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-import { Link } from "react-router-dom";
+import { Link as MuiLink } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
 
 export default function RegisterPage() {
@@ -91,9 +92,9 @@ export default function RegisterPage() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Sign in
-              </Link>
+              <MuiLink component={RouterLink} to="/login" variant="body2">
+                {"Already have an account? Sign in"}
+              </MuiLink>
             </Grid>
           </Grid>
         </Box>

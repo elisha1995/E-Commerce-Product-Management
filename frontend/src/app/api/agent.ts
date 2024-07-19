@@ -38,7 +38,7 @@ const requests = {
   get: (url: string) => axios.get(url).then(responseBody),
   post: (url: string, body: object) => axios.post(url, body).then(responseBody),
   put: (url: string, body: object) => axios.put(url, body).then(responseBody),
-  delete: (url: string) => axios.put(url).then(responseBody),
+  delete: (url: string) => axios.delete(url).then(responseBody),
 };
 
 const Store = {
@@ -150,11 +150,25 @@ const Account = {
   login: (values: any) => requests.post("auth/login", values),
 };
 
+const Orders = {
+  list: () => requests.get("orders"),
+  fetch: (id: number) => requests.get(`orders/${id}`),
+  create: (values: any) => requests.post("orders", values),
+};
+
+// const Admin = {
+//   updateProduct: (productId: number, product: Product) =>
+//     requests.put(`products/${productId}`, product),
+//   deleteProduct: (productId: number) =>
+//     requests.delete(`products/${productId}`),
+// };
+
 const agent = {
   Store,
   Basket,
   Account,
-  //   Orders,
+  Orders,
+  //Admin,
 };
 
 export default agent;
