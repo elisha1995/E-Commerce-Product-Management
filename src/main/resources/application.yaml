@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/product-management
+    url: jdbc:mysql://localhost:3307/product_management?createDatabaseIfNotExist=true
     username: root
-    password: test1234!
+    password: pass1234!
   application:
     name: ProductManagement
   jpa:
@@ -15,7 +15,7 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect  # Updated dialect
         format_sql: true
   data:
     redis:
@@ -30,4 +30,3 @@ management:
   endpoint:
     health:
       show-details: always
-

@@ -1,15 +1,16 @@
 services:
-  product-management-mysql:
+  product_management-mysql:
     image: mysql
     restart: always
-    container_name: "product-management-mysql"
+    container_name: "product_management-mysql"
     environment:
-      MYSQL_ROOT_PASSWORD: 'test1234!'
+      MYSQL_ROOT_PASSWORD: 'pass1234!'
+      MYSQL_DATABASE: 'product_management'  # Add this line
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./data.sql:/docker-entrypoint-initdb.d/data.sql
-      - product-management-mysql-data:/var/lib/mysql
+      - product_management-mysql-data:/var/lib/mysql
 
   product-management-redis:
     image: "redis:latest"
@@ -21,4 +22,4 @@ services:
 
 volumes:
   product-management-redis-data:
-  product-management-mysql-data:
+  product_management-mysql-data:

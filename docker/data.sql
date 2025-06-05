@@ -1,9 +1,9 @@
 -- -----------------------------------------------------
 -- Schema full-stack-product-management
--- -----------------------------------------------------
-CREATE DATABASE IF NOT EXISTS `product-management`;
-
-USE `product-management` ;
+-- -- -----------------------------------------------------
+-- CREATE DATABASE IF NOT EXISTS `product-management`;
+--
+-- USE `product-management` ;
 
 -- Drop existing tables if they exist
 DROP TABLE IF EXISTS Brand;
